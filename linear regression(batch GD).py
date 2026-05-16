@@ -11,7 +11,7 @@ def gradient_descent(x,y,w,b,alpha):
     b=b-alpha*db
     return w,b
 
-data=pd.read_csv("C:\\Users\\deept\\OneDrive\\Desktop\\ml_models\\Experience-Salary.csv")
+data=pd.read_csv("https://raw.githubusercontent.com/Deeptanshu-Samanta/Linear-Regression/refs/heads/main/Experience-Salary.csv")
 x=data["exp(in months)"]
 y=data["salary(in thousands)"]
 x=np.array(x)
