@@ -44,5 +44,7 @@ for i in range(0,m):
     acc[i]=a*100
 
 print("accuracy=",sum(acc)/m)
-
+plt.xlabel("Experience (in months)")
+plt.ylabel("Salary (in thousands)")
+plt.title("Stochastic Gradient Descent")
 plt.show()
