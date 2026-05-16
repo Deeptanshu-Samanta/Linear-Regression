@@ -17,7 +17,7 @@ $$\hat{y} = wx + b$$
 ### 2. The Cost Function (Mean Squared Error)
 To measure how "wrong" the model's current line is, we use the Mean Squared Error (MSE) cost function, denoted as $J(w,b)$. It calculates the average squared difference between actual salaries ($y$) and predicted salaries ($\hat{y}$):
 $$J(w,b) = \frac{1}{2m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$$
-*(Where $m$ is the total number of data points).*
+*(Where m is the total number of data points).*
 
 ### 3. The Gradients (Calculus)
 To minimize the Cost Function, we calculate the partial derivatives (gradients) with respect to $w$ and $b$. These derivatives point in the direction of the steepest ascent; we take the negative of this to step downhill towards the minimum error.
@@ -30,12 +30,12 @@ $$db = \frac{\partial J}{\partial b} = -\frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y
 
 ### 4. The Update Rule
 We update the parameters using a defined learning rate ($\alpha$), which dictates the size of the steps taken downhill:
-$$w = w - \alpha \cdot dw$$
+$$w = w - \alpha \cdot dw$$ and 
 $$b = b - \alpha \cdot db$$
 
 ---
 
-## ⚙️ Algorithms Implemented
+## Algorithms Implemented
 
 ### Batch Gradient Descent (BGD)
 BGD calculates the error for the **entire dataset** before taking a single step (updating the weights). 
@@ -50,13 +50,13 @@ $$dw = -x_i (y_i - \hat{y}_i)$$
 
 ---
 
-## 📈 Evaluation & Results
+## Evaluation & Results
 To evaluate the "Accuracy", this project implements a basic division based accuracy calculation. 
-$$Accuracy=\frac{\calculated y}{\actual y}$$
+$$Accuracy=\frac{\hat{y}}{y}$$
 
 
 **Project Results:**
-* **Batch Gradient Descent:** ~$69.995\%$
-* **Stochastic Gradient Descent:** ~$69.345\%$ 
+* **Batch Gradient Descent:** ~69.995\%
+* **Stochastic Gradient Descent:** ~69.345\%
 
 *Conclusion: Both algorithms successfully mapped the linear relationship, proving that roughly 70% of the variance in a person's salary in this dataset is dictated strictly by their months of experience.*
