@@ -35,7 +35,7 @@ while True:
     costi=costf
 
 plt.plot(x,y_pred,"b-")
-print("w=",w)
+print("w=",w[0])
 print("b=",b)
 
 acc=np.zeros(m)
@@ -46,5 +46,7 @@ for i in range(0,m):
     acc[i]=a*100
 
 print("accuracy=",sum(acc)/m)
-
+plt.xlabel("Experience (in months)")
+plt.ylabel("Salary (in thousands)")
+plt.title("Batch Gradient Descent")
 plt.show()
