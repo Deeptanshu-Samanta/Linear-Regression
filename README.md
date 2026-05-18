@@ -73,7 +73,7 @@ $$w^{(i)} = \exp\left( -\frac{(x^{(i)} - x_{target})^2}{2\tau^2} \right)$$
 ### 3. The Math: Weighted Cost Function
 Once the weights are calculated for a specific query point, we inject those weights into our standard Mean Squared Error cost function.
 
-$$J(w,b) = \frac{1}{2} \sum_{i=1}^{m} w^{(i)} \cdot (y_i - (w x_i + b))^2$$
+$$J(w,b) = \frac{1}{2} \sum_{i=1}^{m} w^{(i)} \cdot (y_i - (\theta x_i + b))^2$$
 
 When we minimize this new cost function (either via Gradient Descent or the Normal Equation matrix shortcut), the algorithm automatically ignores distant points and perfectly fits a tiny straight line just for the local neighborhood of $x_{target}$. 
 
@@ -84,6 +84,7 @@ The flexibility of the curve is controlled entirely by $\tau$ (Tau), known as th
 
 ### Execution Note
 Because the weights change depending on where $x_{target}$ is, LWR cannot be trained once. The entire algorithm (calculating weights and minimizing the cost function) must be re-run from scratch for **every single point** you want to predict.
+
 ---
 
 ## Evaluation & Results
