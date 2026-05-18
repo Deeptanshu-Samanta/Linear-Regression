@@ -55,6 +55,35 @@ $$dw = -x_i (y_i - \hat{y}_i)$$
 * **Pros:** Extremely fast iterations, capable of escaping local minima.
 * **Cons:** The descent path is noisy and zig-zags, oscillating around the minimum rather than settling perfectly.
 
+### Locally Weighted Regression (LWR)
+*Also known as LOESS (Locally Estimated Scatterplot Smoothing)*
+
+While standard Linear Regression is a **Parametric** algorithm (fitting a single, rigid global line to the entire dataset), Locally Weighted Regression is a **Non-Parametric** algorithm. It does not train a single model; instead, it trains hundreds of tiny, localized models on the fly to fit highly non-linear, curved datasets.
+
+### 1. The Core Concept
+To predict a value for a specific target point ($x_{target}$), LWR gives a "weight" to every training point in the dataset. 
+* Training points **close** to the target get a weight near $1.0$ (high influence).
+* Training points **far away** from the target get a weight near $0.0$ (ignored).
+
+### 2. The Math: Gaussian Kernel (Influence Weights)
+The algorithm calculates the influence weight ($w^{(i)}$) for each training data point using a bell-curve (Gaussian) formula:
+
+$$w^{(i)} = \exp\left( -\frac{(x^{(i)} - x_{target})^2}{2\tau^2} \right)$$
+
+### 3. The Math: Weighted Cost Function
+Once the weights are calculated for a specific query point, we inject those weights into our standard Mean Squared Error cost function.
+
+$$J(w,b) = \frac{1}{2} \sum_{i=1}^{m} w^{(i)} \cdot (y_i - (w x_i + b))^2$$
+
+When we minimize this new cost function (either via Gradient Descent or the Normal Equation matrix shortcut), the algorithm automatically ignores distant points and perfectly fits a tiny straight line just for the local neighborhood of $x_{target}$. 
+
+### 4. The Hyperparameter: Bandwidth ($\tau$)
+The flexibility of the curve is controlled entirely by $\tau$ (Tau), known as the Bandwidth. 
+* **Small $\tau$:** A narrow bell curve. The model only looks at immediate neighbors, resulting in a highly flexible, wiggly line (prone to overfitting).
+* **Large $\tau$:** A wide bell curve. The model looks at almost all data points, resulting in a stiff, rigid line (prone to underfitting, acting like standard linear regression).
+
+### Execution Note
+Because the weights change depending on where $x_{target}$ is, LWR cannot be trained once. The entire algorithm (calculating weights and minimizing the cost function) must be re-run from scratch for **every single point** you want to predict.
 ---
 
 ## Evaluation & Results
